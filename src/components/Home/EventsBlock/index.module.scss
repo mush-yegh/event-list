@@ -1,0 +1,57 @@
+@import "./../../../styles/colors";
+
+#events_block {
+  .empty {
+    min-width: 300px;
+    min-height: 200px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+  }
+  .event_row {
+    padding: 15px 0px 15px 15px;
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    &:first-child {
+      border-top: 1px solid $border-color;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+    &:last-child {
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    &:hover {
+      .title_icons {
+        .icons {
+          visibility: visible;
+        }
+      }
+    }
+    .title_icons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 30px;
+      .event_title {
+        color: $title-color;
+      }
+      .icons {
+        display: flex;
+        flex-direction: row;
+        visibility: hidden;
+        button {
+          padding: 3px 7px;
+          background-color: transparent;
+        }
+      }
+    }
+    .sub_row {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+  }
+}
