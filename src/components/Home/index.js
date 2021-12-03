@@ -10,6 +10,7 @@ const todaysEvents = [
     title: "Dog's birthday",
     additionalFields: [
       {
+        key: "budget",
         value: "300$",
       },
     ],

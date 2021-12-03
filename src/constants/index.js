@@ -1,6 +1,8 @@
-export const EVENT_TYPES = {
-  holidays: {
-    label: "Праздничные дни",
+export const EVENT_TYPES = [
+  {
+    key: "holidays",
+    value: 0,
+    text: "Праздничные дни",
     additionalFields: [
       {
         name: "budget",
@@ -9,29 +11,33 @@ export const EVENT_TYPES = {
       },
     ],
   },
-  activities: {
-    label: "Мероприятия",
+  {
+    key: "activities",
+    value: 1,
+    text: "Мероприятия",
     additionalFields: [
       {
         name: "address",
-        label: "адрес:",
+        label: "Куда идти ?",
         component: "TEXT INPUT",
       },
       {
         name: "time",
-        label: "Время:",
+        label: "Во сколько ?",
         component: "TIME INPUT",
       },
     ],
   },
-  other: {
-    label: "Пометки / Другое",
+  {
+    key: "other",
+    value: 2,
+    text: "Пометки / Другое",
     additionalFields: [
       {
-        name: "",
+        name: "note",
         label: "",
         component: "TEXT INPUT",
       },
     ],
   },
-};
+];

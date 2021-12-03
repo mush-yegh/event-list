@@ -1,5 +1,17 @@
 #event {
-  > p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  .page_title {
+    min-width: 300px;
     text-align: center;
+  }
+  .row {
+    margin: 10px 0;
+    .label {
+      font-size: 12px;
+    }
   }
 }

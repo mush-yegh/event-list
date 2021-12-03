@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Button, Icon } from "semantic-ui-react";
-import { EVENT_TYPES } from "./../../../constants";
 import styles from "./index.module.scss";
 
 const EventsBlock = ({ eventList, onDeleteButtonClick }) => {
@@ -24,7 +23,7 @@ const EventsBlock = ({ eventList, onDeleteButtonClick }) => {
                 <Link
                   to={{
                     pathname: "/event",
-                    state: { id },
+                    state: { type },
                   }}
                 >
                   <Button icon>
@@ -37,12 +36,14 @@ const EventsBlock = ({ eventList, onDeleteButtonClick }) => {
               </div>
             </div>
 
-            {additionalFields.map((field, i) => {
-              const { label } = EVENT_TYPES[type].additionalFields[i];
+            {additionalFields.map((field) => {
+              const { key: label, value } = field;
               return (
                 <div key={`${id}_${field.key}`} className={styles.sub_row}>
-                  {label && <div className={styles.field_title}>{label}</div>}
-                  <div className={styles.field_value}>{field.value}</div>
+                  {label && (
+                    <div className={styles.field_title}>{`${label}:`}</div>
+                  )}
+                  <div className={styles.field_value}>{value}</div>
                 </div>
               );
             })}
