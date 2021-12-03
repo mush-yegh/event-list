@@ -1,6 +1,14 @@
+@import "./styles/colors";
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  color: $text-color;
+  background-color: $white;
+  cursor: default;
 }
