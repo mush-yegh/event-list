@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useLocation, Link, Redirect } from "react-router-dom";
-
+import { useHistory, useLocation, Link, Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addEvent, updateEvent } from "../../redux/reducers/events";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Input, Select, Button } from "semantic-ui-react";
@@ -17,18 +18,20 @@ import styles from "./index.module.scss";
 const getInitialState = (state) => {
   return state && state.mode === EVENT_MODE.EDIT
     ? {
-        eventName: state.item.eventName,
-        eventType: EVENT_TYPES.find((e) => e.key === state.item.type),
-        additionalFields: state.item.additionalFields,
+        ...state.item,
+        type: EVENT_TYPES.find((e) => e.key === state.item.type),
       }
     : {
         eventName: "",
-        eventType: EVENT_TYPES[0],
+        type: EVENT_TYPES[0],
         additionalFields: ADDITIONAL_INPUTS[EVENT_TYPES[0].key],
       };
 };
 
 const Event = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const { state } = useLocation();
   const initialState = getInitialState(state);
   const [eventState, setEventState] = useState(initialState);
@@ -49,7 +52,7 @@ const Event = () => {
   };
 
   const handleEventTypeChange = (value) => {
-    // Clear all additional input values before setting new eventType
+    // Clear all additional input values before setting new type
     eventState.additionalFields.forEach((e) => {
       setValue(e.name, null);
     });
@@ -57,13 +60,24 @@ const Event = () => {
     const type = EVENT_TYPES.find((e) => e.value === value);
     setEventState({
       ...eventState,
-      eventType: type,
+      type: type,
       additionalFields: ADDITIONAL_INPUTS[type.key],
     });
   };
 
   const onSubmit = (data) => {
-    //TODO dispatch saveEvent
+    const newEvent = {
+      id: eventState.id,
+      type: eventState.type.key,
+      eventName: data.eventName,
+      additionalFields: eventState.additionalFields.map((e) => {
+        return { name: e.name, value: data[e.name] };
+      }),
+    };
+
+    const action = state.mode === EVENT_MODE.EDIT ? updateEvent : addEvent;
+    dispatch(action(newEvent));
+    history.push("/");
   };
 
   return (
@@ -90,13 +104,13 @@ const Event = () => {
           <Select
             className={styles.input_item}
             options={EVENT_TYPES}
-            value={eventState.eventType.value}
+            value={eventState.type.value}
             onChange={(e, data) => handleEventTypeChange(data.value)}
           />
         </div>
         {eventState.additionalFields.map((item) => {
           const { name, value } = item;
-          const additionalInput = ADDITIONAL_INPUTS[eventState.eventType.key];
+          const additionalInput = ADDITIONAL_INPUTS[eventState.type.key];
           const { inputLabel, inputType, validationRules } =
             additionalInput.find((o) => o.name === item.name);
           const initialValue =

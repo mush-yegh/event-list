@@ -75,10 +75,8 @@ export default function reducer(state = initialState, action) {
 }
 
 export const addEvent = (newEvent) => {
-  console.log("newEvent === ", newEvent);
   return (dispatch, getState) => {
     const { selectedDate } = getState().calendar;
-    console.log("selectedDate === ", selectedDate);
 
     dispatch(add({ ...newEvent, date: selectedDate }));
   };

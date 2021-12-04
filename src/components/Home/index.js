@@ -1,3 +1,6 @@
+import { shallowEqual, useSelector, useDispatch } from "react-redux";
+import { setSelectedItemId } from "../../redux/reducers/calendar";
+import { deleteEvent } from "../../redux/reducers/events";
 import CalendarBlock from "./CalendarBlock";
 import EventsBlock from "./EventsBlock";
 import "react-datepicker/dist/react-datepicker.css";
@@ -5,44 +8,29 @@ import styles from "./index.module.scss";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
 
-const todaysEvents = [
-  {
-    id: 1,
-    eventName: "Dog's birthday",
-    type: "holidays",
-    additionalFields: [{ name: "budget", value: "300$" }],
-  },
-  {
-    id: 2,
-    eventName: "Drinking vodka with neighbor",
-    type: "activities",
-    additionalFields: [
-      { name: "address", value: "in Tomsk city" },
-      { name: "time", value: "13:59" },
-    ],
-  },
-  {
-    id: 3,
-    eventName: "Simple note",
-    type: "other",
-    additionalFields: [{ name: "note", value: "Buy bread" }],
-  },
-];
-
 const Home = () => {
   const { location } = useHistory();
+  const dispatch = useDispatch();
+
   useEffect(() => (location.state = null), [location]);
 
+  const { selectedDate } = useSelector((state) => state.calendar, shallowEqual);
+  const onDateChange = (date) => {
+    dispatch(setSelectedItemId(date));
+  };
+
+  const { events } = useSelector((state) => state.events, shallowEqual);
+
   const handleDeleteButtonClick = (id) => {
-    //TODO dispatch deleteEvent action
+    dispatch(deleteEvent(id));
   };
 
   return (
     <div id={styles.home}>
-      <CalendarBlock />
+      <CalendarBlock selectedDate={selectedDate} onDateChange={onDateChange} />
       <EventsBlock
+        eventList={events.filter((e) => e.date === selectedDate)}
         onDeleteButtonClick={handleDeleteButtonClick}
-        eventList={todaysEvents}
       />
     </div>
   );
