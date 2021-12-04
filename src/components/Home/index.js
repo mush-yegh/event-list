@@ -2,36 +2,37 @@ import CalendarBlock from "./CalendarBlock";
 import EventsBlock from "./EventsBlock";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./index.module.scss";
+import { useEffect } from "react";
+import { useHistory } from "react-router";
 
 const todaysEvents = [
   {
     id: 1,
+    eventName: "Dog's birthday",
     type: "holidays",
-    title: "Dog's birthday",
-    additionalFields: [
-      {
-        value: "300$",
-      },
-    ],
+    additionalFields: [{ name: "budget", value: "300$" }],
   },
   {
     id: 2,
+    eventName: "Drinking vodka with neighbor",
     type: "activities",
-    title: "Drinking vodka with neighbor",
     additionalFields: [
-      { key: "address", value: "in Tomsk city" },
-      { key: "time", value: "13:59" },
+      { name: "address", value: "in Tomsk city" },
+      { name: "time", value: "13:59" },
     ],
   },
   {
     id: 3,
+    eventName: "Simple note",
     type: "other",
-    title: "Simple note",
-    additionalFields: [{ key: "", value: "Buy bread" }],
+    additionalFields: [{ name: "note", value: "Buy bread" }],
   },
 ];
 
 const Home = () => {
+  const { location } = useHistory();
+  useEffect(() => (location.state = null), [location]);
+
   const handleDeleteButtonClick = (id) => {
     //TODO dispatch deleteEvent action
   };

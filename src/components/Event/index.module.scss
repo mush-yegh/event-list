@@ -1,5 +1,40 @@
+@import "./../../styles/colors";
+
 #event {
-  > p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  .page_title {
+    min-width: 300px;
     text-align: center;
+  }
+  .row {
+    margin: 10px 0;
+    .label {
+      font-size: 12px;
+    }
+    .input_item {
+      width: 240px;
+    }
+
+    > p {
+      font-size: 11px;
+      color: $warning-color;
+    }
+  }
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 240px;
+
+    button {
+      font-family: "Roboto";
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 }
