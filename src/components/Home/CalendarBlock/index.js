@@ -3,7 +3,7 @@ import ru from "date-fns/locale/ru";
 import DatePicker from "react-datepicker";
 import { Button, Icon } from "semantic-ui-react";
 import { BUTTON_TITLES, EVENT_MODE } from "./../../../constants";
-import { formatDate } from "./../../helpers";
+import { formatDate } from "./../../../helpers";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./index.module.scss";
 
