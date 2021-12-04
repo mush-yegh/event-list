@@ -7,7 +7,7 @@ import { formatDate } from "./../../helpers";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./index.module.scss";
 
-const CalendarBlock = ({ selectedDate, onDateChange }) => {
+const CalendarBlock = ({ selectedDate, onDateChange, highlightDates }) => {
   return (
     <div id={styles.calendar_block}>
       <Button basic icon labelPosition="right" className={styles.chosen_date}>
@@ -19,6 +19,7 @@ const CalendarBlock = ({ selectedDate, onDateChange }) => {
         onChange={(date) => onDateChange(date)}
         inline
         locale={ru}
+        highlightDates={highlightDates}
       />
       <Link
         to={{

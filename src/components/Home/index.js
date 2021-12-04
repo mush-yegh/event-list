@@ -25,9 +25,15 @@ const Home = () => {
     dispatch(deleteEvent(id));
   };
 
+  const highlightDatesSet = new Set(events.map((e) => e.date));
+
   return (
     <div id={styles.home}>
-      <CalendarBlock selectedDate={selectedDate} onDateChange={onDateChange} />
+      <CalendarBlock
+        selectedDate={selectedDate}
+        onDateChange={onDateChange}
+        highlightDates={[...highlightDatesSet].map((e) => new Date(e))}
+      />
       <EventsBlock
         eventList={events.filter((e) => e.date === selectedDate)}
         onDeleteButtonClick={handleDeleteButtonClick}
