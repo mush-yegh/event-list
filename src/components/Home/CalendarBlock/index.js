@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import ru from "date-fns/locale/ru";
 import DatePicker from "react-datepicker";
@@ -8,25 +7,23 @@ import { formatDate } from "./../../helpers";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./index.module.scss";
 
-const CalendarBlock = () => {
-  const [chosenDate, setChosenDate] = useState(new Date());
-
+const CalendarBlock = ({ selectedDate, onDateChange }) => {
   return (
     <div id={styles.calendar_block}>
       <Button basic icon labelPosition="right" className={styles.chosen_date}>
-        {formatDate(chosenDate)}
+        {formatDate(selectedDate)}
         <Icon name="caret down" />
       </Button>
       <DatePicker
-        selected={chosenDate}
-        onChange={(date) => setChosenDate(date)}
+        selected={new Date(selectedDate)}
+        onChange={(date) => onDateChange(date)}
         inline
         locale={ru}
       />
       <Link
         to={{
           pathname: "/event",
-          state: { mode: EVENT_MODE.ADD, chosenDate },
+          state: { mode: EVENT_MODE.ADD, selectedDate },
         }}
       >
         <Button fluid basic content={BUTTON_TITLES.ADD}></Button>
