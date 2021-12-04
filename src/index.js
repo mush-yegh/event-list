@@ -7,7 +7,7 @@ import App from "./App";
 import "semantic-ui-css/semantic.min.css";
 import "./index.scss";
 
-const store = configureStore();
+const { store } = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>

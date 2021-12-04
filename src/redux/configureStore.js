@@ -1,7 +1,15 @@
 import { applyMiddleware, createStore } from "redux";
-import { createLogger } from "redux-logger";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
+import { createLogger } from "redux-logger";
 import { rootReducer } from "./reducers";
+
+const persistConfig = {
+  key: "eventList",
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const configureStore = () => {
   const middleWare = [];
@@ -15,10 +23,12 @@ export const configureStore = () => {
   const initialState = {};
 
   const store = createStore(
-    rootReducer,
+    persistedReducer,
     initialState,
     applyMiddleware(...middleWare)
   );
 
-  return store;
+  const persistor = persistStore(store);
+
+  return { store, persistor };
 };
