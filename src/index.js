@@ -9,6 +9,10 @@ import "./index.scss";
 
 const { store } = configureStore();
 
+window.addEventListener("beforeunload", () =>
+  localStorage.removeItem("persist:eventList")
+);
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
