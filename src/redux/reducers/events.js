@@ -1,10 +1,10 @@
-const todaysEvents = [
+const inittialEvents = [
   {
     id: 0,
     date: "2021-12-17",
     eventName: "Dog's birthday",
     type: "holidays",
-    additionalFields: [{ name: "budget", value: "300$" }],
+    additionalFields: [{ name: "budget", value: "300" }],
   },
   {
     id: 1,
@@ -43,7 +43,7 @@ const remove = (payload) => ({
 });
 
 const initialState = {
-  events: todaysEvents,
+  events: inittialEvents,
 };
 
 export default function reducer(state = initialState, action) {

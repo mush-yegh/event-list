@@ -97,7 +97,7 @@ const Event = () => {
         {eventState.additionalFields.map((item) => {
           const { name, value } = item;
           const additionalInput = ADDITIONAL_INPUTS[eventState.type.key];
-          const { inputLabel, inputType, validationRules } =
+          const { inputLabel, inputType, validationRules, suffix } =
             additionalInput.find((o) => o.name === item.name);
           const initialValue =
             state.item &&
@@ -109,6 +109,8 @@ const Event = () => {
                 name={name}
                 type={inputType}
                 className={styles.input_item}
+                label={{ basic: true, content: suffix }}
+                labelPosition="right"
                 defaultValue={value}
                 error={!!errors[name]}
                 {...register(name, {

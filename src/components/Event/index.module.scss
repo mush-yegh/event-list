@@ -17,6 +17,23 @@
     }
     .input_item {
       width: 240px;
+      > input {
+        outline: none;
+        border-color: $input-border-color;
+      }
+
+      input[name="budget"] {
+        width: calc(100% - 40px);
+        outline: none;
+        border-right: none;
+      }
+      input:not([name="budget"]) {
+        border: 1px solid $input-border-color !important;
+        border-radius: 0.28571429rem !important;
+        & ~ div {
+          display: none;
+        }
+      }
     }
 
     > p {
@@ -36,5 +53,11 @@
         margin-right: 0;
       }
     }
+  }
+}
+
+:global(.ui.input.error) {
+  > div {
+    background-color: $warning-bg-color;
   }
 }

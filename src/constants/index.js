@@ -1,8 +1,8 @@
 export const INPUT_DEFAULT_VALIDATION = {
-  required: "Please fill this field",
+  required: "Пожалуйста, заполните это поле",
   minLength: {
     value: 4,
-    message: "Length is too short",
+    message: "Значение слишком короткое",
   },
 };
 
@@ -41,6 +41,7 @@ export const ADDITIONAL_INPUTS = {
       label: "Бюджет",
       inputLabel: "Бюджет",
       inputType: "text",
+      suffix: "$",
       validationRules: INPUT_DEFAULT_VALIDATION,
     },
   ],
@@ -50,6 +51,7 @@ export const ADDITIONAL_INPUTS = {
       label: "Адрес",
       inputLabel: "Куда идти ?",
       inputType: "text",
+      suffix: "",
       validationRules: INPUT_DEFAULT_VALIDATION,
     },
     {
@@ -57,6 +59,7 @@ export const ADDITIONAL_INPUTS = {
       label: "Время",
       inputLabel: "Во сколько ?",
       inputType: "time",
+      suffix: "",
       validationRules: { required: "Время не указано" },
     },
   ],
@@ -66,6 +69,7 @@ export const ADDITIONAL_INPUTS = {
       label: "",
       inputLabel: "",
       inputType: "text",
+      suffix: "",
       validationRules: INPUT_DEFAULT_VALIDATION,
     },
   ],
