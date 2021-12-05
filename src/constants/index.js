@@ -1,8 +1,8 @@
 export const INPUT_DEFAULT_VALIDATION = {
-  required: "Please fill this field",
+  required: "Пожалуйста, заполните это поле",
   minLength: {
     value: 4,
-    message: "Length is too short",
+    message: "Значение слишком короткое",
   },
 };
 
