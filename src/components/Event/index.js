@@ -13,28 +13,14 @@ import {
   INPUT_DEFAULT_VALIDATION,
   BUTTON_TITLES,
 } from "../../constants";
+import { getInitialState } from "../../helpers";
 import styles from "./index.module.scss";
-
-const getInitialState = (state) => {
-  return state && state.mode === EVENT_MODE.EDIT
-    ? {
-        ...state.item,
-        type: EVENT_TYPES.find((e) => e.key === state.item.type),
-      }
-    : {
-        eventName: "",
-        type: EVENT_TYPES[0],
-        additionalFields: ADDITIONAL_INPUTS[EVENT_TYPES[0].key],
-      };
-};
 
 const Event = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-
   const { state } = useLocation();
-  const initialState = getInitialState(state);
-  const [eventState, setEventState] = useState(initialState);
+  const [eventState, setEventState] = useState(getInitialState(state));
   const {
     register,
     setValue,
