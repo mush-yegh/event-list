@@ -38,13 +38,15 @@ const EventsBlock = ({ eventList, onDeleteButtonClick }) => {
             </div>
             {additionalFields.map((field) => {
               const { name, value } = field;
-              const { label } = ADDITIONAL_INPUTS[type].find(
+              const { label, suffix } = ADDITIONAL_INPUTS[type].find(
                 (o) => o.name === field.name
               );
               return (
                 <div key={`${id}_${name}`} className={styles.sub_row}>
                   {label && <div className={styles.field_title}>{label}:</div>}
-                  <div className={styles.field_value}>{value}</div>
+                  <div
+                    className={styles.field_value}
+                  >{`${value}${suffix}`}</div>
                 </div>
               );
             })}

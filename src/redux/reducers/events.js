@@ -4,7 +4,7 @@ const todaysEvents = [
     date: "2021-12-17",
     eventName: "Dog's birthday",
     type: "holidays",
-    additionalFields: [{ name: "budget", value: "300$" }],
+    additionalFields: [{ name: "budget", value: "300" }],
   },
   {
     id: 1,
